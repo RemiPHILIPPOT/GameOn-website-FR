@@ -37,7 +37,7 @@ let validation = null;
       Utils
 =====================*/
 
-// launch burger menu
+// launch menu
 function editNav() {
   let x = document.getElementById('myTopnav');
   if (x.className === 'topnav') {
@@ -86,6 +86,8 @@ form.addEventListener('submit', (e) => {
     showConfirmation();
     modalbg.style.display = 'none';
     form.reset();
+    
+    
   }
 });
 
