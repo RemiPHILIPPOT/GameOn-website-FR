@@ -22,6 +22,7 @@ const checkMailing = document.getElementById('checkbox2');
 const checkError1 = document.querySelector('.checkError1');
 const multiCheckbox = document.querySelectorAll('input[id^="location"]');
 const multicheckError = document.querySelector('.multicheck-error');
+const submit = document.querySelector('.btn-submit');
 const validData = {
   first: null,
   last: null,
@@ -57,23 +58,33 @@ function launchModal() {
 closeModal.addEventListener('click', () => {
   modalbg.style.display = 'none';
   form.reset();
+  
+  
 });
 
 // Validation confirmation modal
 const showConfirmation = () => {
   confirmationMsg.style.display = 'flex';
   validationConfirmed();
+  
 };
 
 const validationConfirmed = () => {
   confirmationMsgBtn.forEach((btn) => {
     btn.addEventListener('click', () => {
       confirmationMsg.style.display = 'none';
+
     });
   });
 };
 
 // Form validation rules
+
+if (validation) {
+  submit.classList.remove('greytest');
+}
+
+console.log(validation);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -81,11 +92,15 @@ form.addEventListener('submit', (e) => {
   validationInputs((i = null));
   isValidated();
 
+
+
   if (validation) {
+    
     getData();
     showConfirmation();
     modalbg.style.display = 'none';
     form.reset();
+    
     
     
   }
@@ -94,6 +109,9 @@ form.addEventListener('submit', (e) => {
 formInputs.forEach((input, i) => {
   input.addEventListener('input', () => {
     validationInputs(i);
+
+    
+
   });
 });
 
@@ -166,8 +184,11 @@ const validationInputs = (i) => {
     objArray.forEach(({ failCondition, target, message }) => {
       if (failCondition) {
         showError(target, message);
+
       } else {
         success(target);
+
+
       }
     });
   } else {
@@ -175,8 +196,11 @@ const validationInputs = (i) => {
 
     if (obj.failCondition) {
       showError(obj.target, obj.message);
+
     } else {
       success(obj.target);
+
+
     }
   }
 };
@@ -184,6 +208,7 @@ const validationInputs = (i) => {
 const success = (input) => {
   input.classList.remove('border-error');
   input.nextSibling.innerText = '';
+  
 };
 const showError = (input, message) => {
   input.nextSibling.innerText = message;
@@ -192,6 +217,7 @@ const showError = (input, message) => {
 };
 const isValidated = () => {
   let validator = [];
+
 
   errorMessage.forEach((msg) => {
     if (msg.innerText !== '') {
@@ -203,6 +229,7 @@ const isValidated = () => {
     validation = false;
   } else {
     validation = true;
+    
   }
 };
 const getData = () => {
@@ -215,6 +242,3 @@ const getData = () => {
   validData.prenom = formData.get('last');
   console.log(validData);
 };
-
-
-
