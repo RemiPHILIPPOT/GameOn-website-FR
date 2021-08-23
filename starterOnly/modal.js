@@ -2,6 +2,8 @@
       DOM Elements
 =====================*/
 
+// const { get } = require("http");
+
 const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const formData = document.querySelectorAll('.formData');
@@ -22,7 +24,6 @@ const checkMailing = document.getElementById('checkbox2');
 const checkError1 = document.querySelector('.checkError1');
 const multiCheckbox = document.querySelectorAll('input[id^="location"]');
 const multicheckError = document.querySelector('.multicheck-error');
-const submit = document.querySelector('.btn-submit');
 const validData = {
   first: null,
   last: null,
@@ -80,11 +81,6 @@ const validationConfirmed = () => {
 
 // Form validation rules
 
-if (validation) {
-  submit.classList.remove('greytest');
-}
-
-console.log(validation);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -102,12 +98,12 @@ form.addEventListener('submit', (e) => {
     form.reset();
     
     
-    
   }
 });
 
 formInputs.forEach((input, i) => {
   input.addEventListener('input', () => {
+    getData();
     validationInputs(i);
 
     
@@ -129,6 +125,7 @@ const validationCheckbox = () => {
   }
 
   multiCheckbox.forEach((box) => {
+    getData();
     checked = box.checked || checked === true ? true : false;
 
     if (checked) {

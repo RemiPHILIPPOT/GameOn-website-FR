@@ -564,9 +564,3 @@ footer {
   border: none;
 }
 /* Modal form */
-
-.greytest {
-  background-color: grey;
-  cursor:not-allowed;
-  pointer-events: none;
-}
